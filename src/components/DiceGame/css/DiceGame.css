@@ -1,9 +1,8 @@
-.App {
+.Dice {
   text-align: center;
 }
 
-
-.App-header {
+.Dice-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -14,26 +13,34 @@
   color: white;
 }
 
-.App-link {
+.Dice-link {
   color: #61dafb;
 }
-.line{
+.Dice-line {
   position: relative;
   min-height: 2rem;
   min-width: 50vw;
-  max-width: 80vw;
+  max-width: 100%;
 }
-.line > .line-base{
-  position: absolute; 
+.Dice-line > .Dice-line-base {
+  position: absolute;
   height: 10px;
-  inset:  10%;
 }
-.line-1{
+.Dice-line-1 {
   background-color: aquamarine;
   width: 100%;
 }
-.line-2{
-  background-color:red;
+.Dice-line-2 {
+  background-color: red;
   width: 50%;
-  
+}
+
+.dice-logo {
+  height: 5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .dice-logo {
+    width: 70%;
+  }
 }
