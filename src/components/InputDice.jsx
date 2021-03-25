@@ -1,12 +1,15 @@
 import React, { useRef } from "react";
-import { InputGroup, FormControl } from "react-bootstrap";
+import { InputGroup, FormControl,Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 export default function InputDice(props) {
+  const dispatch = useDispatch()
   const ref = useRef(0);
   return (
+    <Col xs="5" md="3">
     <InputGroup size="sm" className="mb-3">
       <InputGroup.Prepend>
         <InputGroup.Text id="inputGroup-sizing-sm">
-          {props.children}
+          {props.text}
         </InputGroup.Text>
       </InputGroup.Prepend>
       <FormControl
@@ -20,10 +23,11 @@ export default function InputDice(props) {
         value={props.value}
         onChange={() => {
           if (props.setActivate) {
-            props.setValue(ref.current.value);
+            dispatch(props.setValue(ref.current.value));
           }
         }}
       />
     </InputGroup>
+    </Col>
   );
 }

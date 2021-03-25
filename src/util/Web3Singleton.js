@@ -174,29 +174,104 @@ export default class Web3Singleton {
             "type": "function"
         }
     ]
-    abiDice = [{
+    abiDice = [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "token_",
+                    "type": "address"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "player",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "profit",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "bet",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "guess",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "roll",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bool",
+                    "name": "lowOrHigher",
+                    "type": "bool"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bool",
+                    "name": "win",
+                    "type": "bool"
+                }
+            ],
+            "name": "LastBet",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [],
+            "name": "Pause",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [],
+            "name": "Unpause",
+            "type": "event"
+        },
+        {
             "constant": false,
             "inputs": [],
             "name": "back",
-            "outputs": [{
-                "name": "",
-                "type": "uint256"
-            }],
+            "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
             "type": "function"
         },
         {
             "constant": false,
-            "inputs": [{
-                    "name": "guessRef",
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "guess",
                     "type": "uint256"
                 },
                 {
+                    "internalType": "uint256",
                     "name": "bet",
                     "type": "uint256"
                 },
                 {
+                    "internalType": "bool",
                     "name": "lowOrHigher",
                     "type": "bool"
                 }
@@ -208,127 +283,27 @@ export default class Web3Singleton {
             "type": "function"
         },
         {
-            "inputs": [{
-                "name": "token_",
-                "type": "address"
-            }],
-            "payable": false,
-            "stateMutability": "nonpayable",
-            "type": "constructor"
-        },
-        {
-            "anonymous": false,
-            "inputs": [{
-                    "indexed": true,
-                    "name": "player",
-                    "type": "address"
-                },
+            "constant": true,
+            "inputs": [],
+            "name": "gameCounter",
+            "outputs": [
                 {
-                    "indexed": false,
-                    "name": "profit",
+                    "internalType": "uint256",
+                    "name": "",
                     "type": "uint256"
-                },
-                {
-                    "indexed": false,
-                    "name": "bet",
-                    "type": "uint256"
-                },
-                {
-                    "indexed": false,
-                    "name": "guessRef",
-                    "type": "uint256"
-                },
-                {
-                    "indexed": false,
-                    "name": "roll",
-                    "type": "uint256"
-                },
-                {
-                    "indexed": false,
-                    "name": "win",
-                    "type": "bool"
                 }
             ],
-            "name": "LastBet",
-            "type": "event"
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
         },
         {
             "constant": true,
             "inputs": [],
             "name": "getbalance",
-            "outputs": [{
-                "name": "",
-                "type": "uint256"
-            }],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [{
-                    "name": "value",
-                    "type": "uint256"
-                },
+            "outputs": [
                 {
-                    "name": "bet",
-                    "type": "uint256"
-                },
-                {
-                    "name": "lowOrHigher",
-                    "type": "bool"
-                }
-            ],
-            "name": "getProfit",
-            "outputs": [{
-                "name": "",
-                "type": "uint256"
-            }],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "getRamdomNumber",
-            "outputs": [{
-                "name": "",
-                "type": "uint256"
-            }],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [],
-            "name": "magicFunction",
-            "outputs": [{
-                "name": "",
-                "type": "uint256"
-            }],
-            "payable": false,
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "constant": true,
-            "inputs": [{
-                    "name": "value",
-                    "type": "uint256"
-                },
-                {
-                    "name": "lowOrHigher",
-                    "type": "bool"
-                }
-            ],
-            "name": "rollDice",
-            "outputs": [{
-                    "name": "",
-                    "type": "bool"
-                },
-                {
+                    "internalType": "uint256",
                     "name": "",
                     "type": "uint256"
                 }
@@ -338,15 +313,36 @@ export default class Web3Singleton {
             "type": "function"
         },
         {
+            "constant": false,
+            "inputs": [],
+            "name": "pause",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "constant": true,
             "inputs": [],
-            "name": "time",
-            "outputs": [{
-                "name": "",
-                "type": "uint256"
-            }],
+            "name": "paused",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
             "payable": false,
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "constant": false,
+            "inputs": [],
+            "name": "unpause",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
             "type": "function"
         }
     ]
@@ -360,7 +356,7 @@ export default class Web3Singleton {
 
     static getInstance() {
         if (!Web3Singleton._instance) {
-            Web3Singleton._instance = this;
+            Web3Singleton._instance = new Web3Singleton();
         }
         return Web3Singleton._instance;
     }
@@ -399,17 +395,30 @@ export default class Web3Singleton {
         return false
     }
     async setContract() {
+        console.log("setContract");
         if (!!this.contractInstance )
             return true
         this.contractInstance = await new window.web3.eth.Contract(this.abiDice, this.diceAddress)
         this.tokenInstance = await new window.web3.eth.Contract(this.abiIBEP20, this.tokenAddress)
         return !!this.contractInstance;
     }
-
+    async getBalance(){      
+        if (!!this.contractInstance) {                           
+            const balace_ = await this.tokenInstance.methods.
+            balanceOf(this.address).call()                        
+            return balace_;
+            }
+      }
+    async getAllowance(){      
+        if (!!this.contractInstance) {                
+            const allowance_ = await this.tokenInstance.methods.
+            allowance(this.address,this.diceAddress).call()                        
+            return allowance_;
+            }
+      }
     async allowance(bet){        
         if (!!this.contractInstance) {
-        const amountToken =window.web3.utils.toBN(bet * (10 ** 18))
-        
+        const amountToken =window.web3.utils.toBN(bet * (10 ** 18))        
         const allowance_ = await this.tokenInstance.methods.
         allowance(this.address,this.diceAddress).call()
         console.log(allowance_,"1111");
@@ -419,14 +428,15 @@ export default class Web3Singleton {
     async game(guess, bet, state) {
         if (!!this.contractInstance) 
         {
+            
             const amountToken =window.web3.utils.toBN(bet * (10 ** 18))                        
-            await this.contractInstance.methods
+            const data = await  this.contractInstance.methods
                 .game(guess,
                     amountToken, state).send({
                     from: this.address,
                     value: 0,
                     gasPrice: window.web3.utils.toBN(25 * (10 ** 9))
-                });
+                })                
             return true
             }
         return false
@@ -447,26 +457,27 @@ export default class Web3Singleton {
         return false
     }
 
-    async allEventHandler() {
-
-        var event_ = await this.contractInstance.getPastEvents('LastBet', {
-            fromBlock: await window.web3.eth.getBlockNumber() - 950,
-            toBlock: 'latest'
-        })
-        let maxLeng = event_.length
+    async allEventHandler() {                
+        const latestBlock =await window.web3.eth.getBlock('latest')
+        var event_ =await   this.contractInstance
+        .getPastEvents('LastBet', {
+            fromBlock: latestBlock.number - 4999,
+            toBlock: 'latest' })
+        let maxLeng = event_.length        
         maxLeng = maxLeng > 25 ? 25 : maxLeng
         let allEvent = []
         if(event_.length>0)
         for (var i = 0; i < maxLeng; i++) {
             allEvent.push({
                 bet: event_[i].returnValues.bet,
-                profit: event_[i].returnValues[1],
-                guessRef: event_[i].returnValues.guessRef,
+                profit: event_[i].returnValues.profit,
+                guess: event_[i].returnValues.guess,
                 player: event_[i].returnValues.player,
                 roll: event_[i].returnValues.roll,
+                lowOrHigher:event_[i].returnValues.lowOrHigher,
                 win: event_[i].returnValues.win
             })
-        }
+        }        
         return allEvent.reverse()
     }
 }

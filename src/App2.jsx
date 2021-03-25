@@ -1,11 +1,11 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import "./css/DiceGame.css";
-import Logo from "./Logo";
-import InputDice from "./InputDice";
-import Bet from "./Bet";
-import DataTable from "./DataTable";
+import Logo from "./components/Logo";
+import InputDice from "./components/InputDice";
+import Bet from "./components/Bet";
+import DataTable from "./components/DataTable";
 import Web3Singleton from "./util/Web3Singleton";
+import CardStab from "./components/CardStab";
 
 function DiceGame() {
   const [guess, setguess] = useState(50);
@@ -13,8 +13,10 @@ function DiceGame() {
   const [bet, setbet] = useState(1);
   const [payOut, setpayOut] = useState(0);
   const [profit, setprofit] = useState(0);
-  const [address, setaddress] = useState(0);
-  const [load, setload] = useState(false);
+  const [address, setaddress] = useState(0x0000);
+  const [load, setload] = useState(false);  
+  const [rollGame, setrollGame] = useState(false)
+
   function calculateProfit(state, guess_, bet) {
     if (guess_ > 98) guess_ = 98;
     if (guess_ < 2) guess_ = 2;
@@ -34,7 +36,23 @@ function DiceGame() {
     const time = setInterval(async () => {
       const web3 = new Web3Singleton();
       if (web3.isReady()) {
-        await web3.loadBlockchain();
+//        await web3.loadBlockchain();
+let accounts = await window.web3.eth.getAccounts()
+web3.setContract()
+window.ethereum.on('accountsChanged', async () => { //On change Address
+    let accounts = await window.web3.eth.getAccounts()
+    setaddress(accounts[0])
+    web3.address = accounts[0]
+    console.log(`Account changed: ${accounts[0]}`)
+})
+window.ethereum.on('disconnect', () => { //On disconect
+  setaddress(0x0000)
+  web3.address = 0x0000
+  console.log('disconnect')
+})
+  setaddress(accounts[0])
+  web3.address = accounts[0]
+  console.log(`Account loged: ${accounts[0]}`)
         setload(true);
         clearInterval(time);
       }
@@ -69,25 +87,26 @@ function DiceGame() {
     };
   });
   return (
-    <div className="Dice">
-      
+    <div className="Dice">      
       <header className="Dice-header">
         <Container>
-          <Row>
+          <Row className="">
             <Col xs="4" md="6" className="flex w-100">
               <Logo />
             </Col>
-            <Col md="11" className="my-4">
-              <p className="h5">
-                contract address:
+            <Col  xs="12" className="my-4 center px-5" >
+              <p className="text-truncate ">              
+                contract address:              
                 <a
                   className="text-decoration-none px-2
-    text-info h6 "
+    text-info h6"
                   href={process.env.REACT_APP_DICE_URL}
                   target="blank"
-                >
+                >                
                   {process.env.REACT_APP_DICE_ADDRESS}
+                
                 </a>
+              
               </p>
             </Col>
           </Row>
@@ -134,9 +153,12 @@ function DiceGame() {
                 Profit
               </InputDice>
             </Col>
-            <Bet guess={guess} setRadio={setRadioValue} bet={bet} />
-
-            <Col>
+            <Bet guess={guess} setRadio={setRadioValue} bet={bet}  setrollGame={setrollGame}
+            rollGame={rollGame}/>
+            <Col className="my-4" xs="12" md="6">
+            <CardStab  address={address} rollGame={rollGame}/>
+            </Col>
+            <Col className="my-4" xs="10" md="12">              
               <DataTable load={load} />
             </Col>
           </Row>

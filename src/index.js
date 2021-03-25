@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
-import App from './components/DiceGame/DiceGame';
+import './App.css';
+import App from './App';
+import store from './redux/stora/stora'
+import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals';
+import { ToastProvider } from 'react-toast-notifications';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
+    <ToastProvider
+    autoDismiss
+    autoDismissTimeout={10000}
+    >
     <App />
-  </React.StrictMode>,
+    </ToastProvider>
+    </Provider>
+  ,
   document.getElementById('root')
 );
 
