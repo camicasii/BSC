@@ -3,7 +3,7 @@ pragma solidity ^0.5.8;
 import "./SafeMath.sol";
 import "./IBEP20.sol";
 
-contract DiceClassicToken{
+contract DiceClassicHawk{
 
     using SafeMath for uint;
     IBEP20 token;
@@ -116,13 +116,5 @@ contract DiceClassicToken{
 
     function getBalance() public view returns (uint){
         return token.balanceOf(address(this));
-    }
-
-    //beta function, only for develop
-    function back() external onlyOwner{
-        if(msg.sender == owner){
-            uint balance =getBalance();
-            token.transfer(owner,balance);
-        }
     }
 }
