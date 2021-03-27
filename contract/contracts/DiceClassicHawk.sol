@@ -68,6 +68,7 @@ contract DiceClassicHawk{
 
     function game(uint guess, uint bet, bool lowOrHigher ) external whenNotPaused returns(bool){
         require(guess >= MIN_RANGE && guess <= MAX_RANGE,"guess off size");
+        require(bet <= (10000 * ( 10**18 ) ),"max bet");
         token.transferFrom(msg.sender,address(this),bet);
         (bool win,uint roll)=rollDice(guess, lowOrHigher);
         uint profit;
