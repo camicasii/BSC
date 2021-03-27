@@ -1,8 +1,30 @@
+.z-index{
+  z-index: 10 !important;
+}
+.relative{
+  position: relative;
+}
+
 .Dice {
   text-align: center;
+  background-color: #282c34;  
 }
-.Dice-header {
-  background-color: #282c34;
+.hawk-img{    
+  position: absolute;  
+  z-index: 0;    
+  background-image: url("./img/icon.png");
+  background-repeat: no-repeat;  
+  background-position: center;
+  background-position-y: top;    
+  opacity: 0.05; 
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.Dice-header {    
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 1 !important;  
   min-height: 100vh;
   display: flex;
   flex-direction: column;

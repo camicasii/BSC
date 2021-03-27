@@ -5,8 +5,7 @@ import Web3Singleton from "../../util/Web3Singleton";
 
 export const asyncGetBalance = createAsyncThunk(
     'users/asyncGetBalance',    
-    async (_,thunkAPI) => {
-      console.log("Aaaaaaaaaaaaaaaaaaaa");
+    async (_,thunkAPI) => {      
       let value=0;
       if(await Web3Singleton.getInstance().setContract()){
          value = await Web3Singleton.getInstance().getBalance()

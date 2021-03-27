@@ -11,8 +11,13 @@ const userSlice = createSlice({
   name: 'game',
   initialState,
   reducers:{
-    setBet(state,action) {      
-      state.bet = action.payload
+    setBet(state,action) {            
+      if(action.payload>10000)      
+        state.bet =  10000      
+      else if (action.payload<0)   
+        state.bet = 1
+      else
+        state.bet = action.payload
       state.profit =  calculateProfit(state.radioValue, state.guess,state.bet).toFixed(4);
       state.payOut = calculatePayout(state.radioValue,state.guess).toFixed(4);      
     },

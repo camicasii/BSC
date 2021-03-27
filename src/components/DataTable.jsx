@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector,useDispatch} from "react-redux";
 import { setRollCount } from "../redux/slice/gameSlice";
-import { Table,Col } from "react-bootstrap";
+import { Table,Col,Container } from "react-bootstrap";
 import Web3Singleton from "../util/Web3Singleton";
 
 
@@ -37,8 +37,7 @@ export default function DataTable({ load }) {
 
   useEffect(async () => {
     if (state.main.load && !!Web3Singleton.getInstance().contractInstance) {      
-      let data_ = await Web3Singleton.getInstance().allEventHandler()
-      console.log(data_);      
+      let data_ = await Web3Singleton.getInstance().allEventHandler()      
       data_ = dataHandler(data_);
       setitems(data_);
     }
@@ -46,8 +45,7 @@ export default function DataTable({ load }) {
   }, [state.game.rollCount]);
 
   useEffect(() => {
-    const time = setInterval(async () => {
-      console.log(!!Web3Singleton.getInstance().contractInstance);
+    const time = setInterval(async () => {      
       if (!!Web3Singleton.getInstance().contractInstance) {        
         dispatch(setRollCount())        
         Web3Singleton.getInstance()
@@ -77,8 +75,9 @@ export default function DataTable({ load }) {
   }, []);
 
   return (
-    <Col className="my-4" xs="10" md="12">              
-    <Table striped bordered hover variant="dark">
+    <Col className="my-4" xs="12" md="12">  
+<Container>
+    <Table   hover variant="dark" responsive="sm">
       <thead>
         <tr>
           <th>Address</th>
@@ -91,6 +90,7 @@ export default function DataTable({ load }) {
       </thead>
       <tbody>{items}</tbody>
     </Table>
+    </Container>
     </Col>
   );
 }

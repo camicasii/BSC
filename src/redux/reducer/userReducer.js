@@ -10,8 +10,7 @@ allowance:0
 
 export default createReducer(initialState,(builder) => {
   builder  
-    .addCase(setAddress, (state, action) => {
-      console.log(action.payload.address);
+    .addCase(setAddress, (state, action) => {      
       state.address = action.payload.address
     })
     .addCase(setBalance, (state, action) => {           

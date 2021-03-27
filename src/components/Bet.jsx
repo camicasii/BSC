@@ -24,10 +24,16 @@ export default function Bet() {
   }, [game.guess])
 
   async function approve() {
-    try {
+    try {      
+      if (!window.web3) { 
+        addToast("Wallet not connected", {
+          appearance: 'error',
+          autoDismiss: false,
+        })
+        return
+       }      
       let time;      
-      if (Web3Singleton.getInstance().isReady()){
-        console.log(Web3Singleton.getInstance().address);        
+      if (Web3Singleton.getInstance().isReady()){    
         const allowance = await Web3Singleton.getInstance().allowance(game.bet)
         if(allowance){                     
           await rollGame()
@@ -63,6 +69,7 @@ export default function Bet() {
     throw "Erroor"
   }
 }catch (error) {
+  console.log(error);
   addToast("Unexpected error", {
     appearance: 'warning',
     autoDismiss: true,        
@@ -71,8 +78,8 @@ export default function Bet() {
   }
 
   async function rollGame() {    
-      try{        
-        const amountToken =window.web3.utils.toBN(game.bet * (10 ** 18))                        
+      try{                
+        const amountToken =window.web3.utils.toWei(String(game.bet))
         addToast("sended request, wait for response", {
           appearance: 'success',
           autoDismiss: false,            
@@ -89,7 +96,7 @@ export default function Bet() {
         if(data.events.LastBet.returnValues.win){
           addToast("You're on a streak, winner", {
             appearance: 'info',
-            autoDismiss: false,            
+            autoDismiss: true,            
           })
         }else{
           addToast("bad vibes, you lost, try again", {

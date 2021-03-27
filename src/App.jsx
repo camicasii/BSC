@@ -19,6 +19,7 @@ export default function App() {
   const dispatch = useDispatch();
   //load web3
   useEffect(() => {
+    let dontConnect= false;
     const time = setInterval(async () => {
       if (window.ethereum) {        
         window.web3 = new Web3(window.ethereum);
@@ -39,10 +40,13 @@ export default function App() {
         clearInterval(time);
       }
       else{
-        addToast("wallet don't connect", {
-          appearance: 'success',
-          autoDismiss: true,
+        if(!dontConnect){
+        addToast("Wallet not connected", {
+          appearance: 'error',
+          autoDismiss: false,
         })
+        dontConnect=true;
+      }
       }
     }, 200);
     return () => {
@@ -82,12 +86,19 @@ export default function App() {
   }, [state.main.init]);
 
   return (
-    <div className="Dice">      
-    <header className="Dice-header">
-      <Container>
+    <div className="Dice relative">      
+    
+    <div className="hawk-img absolute"/>
+    <div className="Dice-header z-index">   
+      
+      <Container className="relative">
+      
       <DiceHeader />
-        <Row className="justify-content-center">
+      
+        <Row >
+          <Col xs="12" className=" justify-content-center">
           <AllInput/>
+          </Col>
         </Row>
         <Bet/>        
         <Row className="justify-content-center">
@@ -95,7 +106,7 @@ export default function App() {
         <DataTable/>        
         </Row>        
         </Container>
-     </header>
+     </div>
     </div>
   );
 }

@@ -5,10 +5,10 @@ export default function InputDice(props) {
   const dispatch = useDispatch()
   const ref = useRef(0);
   return (
-    <Col xs="5" md="3">
+    <Col xs="6" md="3">
     <InputGroup size="sm" className="mb-3">
       <InputGroup.Prepend>
-        <InputGroup.Text id="inputGroup-sizing-sm">
+        <InputGroup.Text id="inputGroup-sizing-sm " className="text-secondary">
           {props.text}
         </InputGroup.Text>
       </InputGroup.Prepend>
@@ -27,6 +27,7 @@ export default function InputDice(props) {
           }
         }}
       />
+      {props.children}
     </InputGroup>
     </Col>
   );
