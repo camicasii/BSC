@@ -24,7 +24,7 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
-const key ="b0004f47f310cc1dd64421d9fbed38a1fe3100b593b71622481862ef16d16e97"
+const key =process.env.privateKey
 
 module.exports = {
   /**
