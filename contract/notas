@@ -1,0 +1,4 @@
+el estandar BEP20 no acepta tranferencia a address(0)
+
+contrato sin la funcion burn 0x052C9639B6c3d3C2C1191f6f1Ea482cEe5470773
+contrato con la funcion burn 0x96e2467F53f010eCB07B25F998fB9c2Ca949304C
