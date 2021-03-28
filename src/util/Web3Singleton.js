@@ -432,7 +432,6 @@ export default class Web3Singleton {
       const allowance_ = await this.tokenInstance.methods
         .allowance(this.address, this.diceAddress)
         .call();
-        console.log(typeof(amountToken));
       return Number(allowance_) > Number(amountToken)
     }
   }
@@ -458,9 +457,7 @@ export default class Web3Singleton {
       await this.tokenInstance.methods
         .approve(this.diceAddress, amountToken)
         .send({
-          from: this.address,
-          value: 0,
-          gasPrice: window.web3.utils.toBN(25 * 10 ** 9),
+          from: this.address
         });
       return true;
     }
@@ -470,7 +467,7 @@ export default class Web3Singleton {
   async allEventHandler() {
     const latestBlock = await window.web3.eth.getBlock("latest");
     var event_ = await this.contractInstance.getPastEvents("LastBet", {
-      fromBlock: latestBlock.number - 4999,
+      fromBlock: latestBlock.number - 4900,
       toBlock: "latest",
     });
     let maxLeng = event_.length;
