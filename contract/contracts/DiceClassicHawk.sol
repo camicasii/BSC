@@ -107,8 +107,8 @@ contract DiceClassicHawk{
     }
 
     function getProfit(uint value, uint bet, bool lowOrHigher) internal view returns(uint){
-        uint n =lowOrHigher?value: MAX_RANGE - value;
-        uint profit = bet.mul(MAX_RANGE.mul(DECIMALS)).div(n).div(DECIMALS);
+        uint n =lowOrHigher?value: RANGE.sub(value);
+        uint profit = bet.mul(RANGE.mul(DECIMALS)).div(n).div(DECIMALS);
         uint balance = getBalance();
         if(profit > balance)
             profit = balance;
