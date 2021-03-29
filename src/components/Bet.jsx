@@ -6,6 +6,8 @@ import { setRadioValue } from "../redux/slice/gameSlice";
 import { setLoad, initContract } from "../redux/action/mainAction";
 import Swal from "sweetalert2";
 
+
+
 import Web3Singleton from "../util/Web3Singleton";
 import ResultBar from "./ResultBar";
 
@@ -87,19 +89,27 @@ export default function Bet() {
     }
   }
 
-  async function rollGame() {
+  async function rollGame() {     
+    
+ console.log(await window.web3.eth.getGasPrice());
+    
+    const amountToken = window.web3.utils.toWei(String(game.bet));
+    
     try {
-      const amountToken = window.web3.utils.toWei(String(game.bet));
+      
       addToast("sended request, wait for response", {
         appearance: "success",
         autoDismiss: false,
       });
-      Web3Singleton.getInstance()
-        .contractInstance.methods.game(guess, amountToken, game.radioValue)
+      console.log(Web3Singleton.getInstance().address);
+      await Web3Singleton.getInstance()
+        //.contractInstance.methods.game(String(guess), amountToken, game.radioValue)
+        .contractInstance.methods.game(String(guess), amountToken, game.radioValue)
         .send({
           from: Web3Singleton.getInstance().address,
-        })
-        .on("transactionHash", function (hash) {
+          //"gas": "0x2DC6C0", // 30400
+          "gasPrice": 25*10**9, 
+        }).on("transactionHash", function (hash) {
           console.log(hash);
         })
         .on("receipt", function (receipt) {
@@ -120,6 +130,7 @@ export default function Bet() {
           // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
           console.log(error);
         });
+        
     } catch (error) {
       console.log(error);
       addToast("Error submitting request, try again later", {
