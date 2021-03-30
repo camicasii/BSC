@@ -175,7 +175,7 @@ export default class Web3Singleton {
       type: "function",
     },
   ];
-  abiDice =  [
+  abiDice = [
     {
       "constant": true,
       "inputs": [],
