@@ -175,178 +175,160 @@ export default class Web3Singleton {
       type: "function",
     },
   ];
-  abiDice = [
+  abiDice =  [
     {
-      inputs: [
+      "constant": true,
+      "inputs": [],
+      "name": "gameCounter",
+      "outputs": [
         {
-          internalType: "address",
-          name: "token_",
-          type: "address",
-        },
+          "name": "",
+          "type": "uint256"
+        }
       ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "constructor",
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      anonymous: false,
-      inputs: [
+      "constant": true,
+      "inputs": [],
+      "name": "paused",
+      "outputs": [
         {
-          indexed: true,
-          internalType: "address",
-          name: "player",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "profit",
-          type: "uint256",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "bet",
-          type: "uint256",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "guess",
-          type: "uint256",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "roll",
-          type: "uint256",
-        },
-        {
-          indexed: false,
-          internalType: "bool",
-          name: "lowOrHigher",
-          type: "bool",
-        },
-        {
-          indexed: false,
-          internalType: "bool",
-          name: "win",
-          type: "bool",
-        },
+          "name": "",
+          "type": "bool"
+        }
       ],
-      name: "LastBet",
-      type: "event",
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-      anonymous: false,
-      inputs: [],
-      name: "Pause",
-      type: "event",
-    },
-    {
-      anonymous: false,
-      inputs: [],
-      name: "Unpause",
-      type: "event",
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: "back",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      constant: false,
-      inputs: [
+      "inputs": [
         {
-          internalType: "uint256",
-          name: "guess",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "bet",
-          type: "uint256",
-        },
-        {
-          internalType: "bool",
-          name: "lowOrHigher",
-          type: "bool",
-        },
+          "name": "token_",
+          "type": "address"
+        }
       ],
-      name: "game",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     },
     {
-      constant: true,
-      inputs: [],
-      name: "gameCounter",
-      outputs: [
+      "anonymous": false,
+      "inputs": [],
+      "name": "Pause",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "Unpause",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
+          "indexed": true,
+          "name": "player",
+          "type": "address"
         },
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "getbalance",
-      outputs: [
         {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
+          "indexed": false,
+          "name": "profit",
+          "type": "uint256"
         },
-      ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: "pause",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: "paused",
-      outputs: [
         {
-          internalType: "bool",
-          name: "",
-          type: "bool",
+          "indexed": false,
+          "name": "bet",
+          "type": "uint256"
         },
+        {
+          "indexed": false,
+          "name": "guess",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "roll",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "lowOrHigher",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "name": "win",
+          "type": "bool"
+        }
       ],
-      payable: false,
-      stateMutability: "view",
-      type: "function",
+      "name": "LastBet",
+      "type": "event"
     },
     {
-      constant: false,
-      inputs: [],
-      name: "unpause",
-      outputs: [],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
+      "constant": false,
+      "inputs": [],
+      "name": "pause",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
-  ];
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "unpause",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "guess",
+          "type": "uint256"
+        },
+        {
+          "name": "bet",
+          "type": "uint256"
+        },
+        {
+          "name": "lowOrHigher",
+          "type": "bool"
+        }
+      ],
+      "name": "game",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
 
   constructor() {
     if (!Web3Singleton._instance) {

@@ -24,8 +24,7 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
-const key ="b0004f47f310cc1dd64421d9fbed38a1fe3100b593b71622481862ef16d16e97"
-//process.env.privateKey
+const key =process.env.privateKey
 
 module.exports = {
   /**
@@ -82,6 +81,13 @@ module.exports = {
       timeoutBlocks: 200,
       skipDryRun: true
     },
+     bsc: {
+      provider: () => new HDWalletProvider(key, `https://bsc-dataseed1.binance.org`),
+      network_id: 56,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
   },
 
   // Set default mocha options here, use special reporters etc.
@@ -96,7 +102,7 @@ module.exports = {
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
        settings: {          // See the solidity docs for advice about optimization and evmVersion
         optimizer: {
-          enabled: true,
+          enabled: false,
           runs: 200
         },
       //  evmVersion: "byzantium"
